@@ -117,7 +117,9 @@ It is as easy as
 docker-compose scale namenode=1 datanode=2
 ```
 
-Please note that in this manner you can create Hadoop cluster on any infrastructure that Docker Machine supports, such as AWS, DO, OpenStack, Azure, etc. Full list is available here https://docs.docker.com/machine/drivers/os-base/
+**Please note that in this manner you can create Hadoop cluster on any infrastructure that Docker Machine supports, such as AWS, DO, OpenStack, Azure, etc.**
+
+Full list is available here https://docs.docker.com/machine/drivers/os-base/
 
 ## Testing
 
