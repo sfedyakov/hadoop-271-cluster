@@ -14,6 +14,7 @@ If you'd like to try directly from the Dockerfile you can build the image as:
 ```
 docker build -t sfedyakov/hadoop-271-cluster .
 ```
+
 # Running Hadoop Cluster
 You have several options to run this image:
 - Run nodes one by one
@@ -26,7 +27,7 @@ You have several options to run this image:
 In order to use the Docker image you have just build or pulled use:
 
 ```
-sudo docker run -i -t --name namenode -h namenode yarn-cluster /etc/bootstrap.sh -bash -namenode
+sudo docker run -i -t --name namenode -h namenode sfedyakov/hadoop-271-cluster /etc/bootstrap.sh -bash -namenode
 ```
 
 You should now be able to access the Hadoop Admin UI at
@@ -37,10 +38,10 @@ http://<host>:8088/cluster
 
 ### 1.2. Start Datanode container
 
-In order to add data nodes to the Apache Yarn cluster, use:
+In order to add data nodes to the Hadoop cluster, use:
 
 ```
-sudo docker run -i -t --link namenode:namenode --dns=namenode yarn-cluster /etc/bootstrap.sh -bash -datanode
+sudo docker run -i -t --link namenode:namenode --dns=namenode sfedyakov/hadoop-271-cluster /etc/bootstrap.sh -bash -datanode
 ```
 
 You should now be able to access the HDFS Admin UI at
