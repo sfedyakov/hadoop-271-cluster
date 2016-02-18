@@ -12,7 +12,7 @@ curl -LO 'http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-x6
 If you'd like to try directly from the Dockerfile you can build the image as:
 
 ```
-sudo docker build  -t yarn-cluster .
+docker build -t sfedyakov/hadoop-271-cluster .
 ```
 # Running Hadoop Cluster
 You have several options to run this image:
