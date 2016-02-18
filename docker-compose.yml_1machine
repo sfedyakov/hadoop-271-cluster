@@ -1,0 +1,18 @@
+namenode:
+  image: sfedyakov/hadoop-271-cluster
+  container_name: namenode
+  hostname: namenode
+  ports:
+    - "8088:8088"
+    - "50090:50090"
+    - "19888:19888"
+  command: "/etc/bootstrap.sh -d -namenode"
+
+datanode:
+  image: sfedyakov/hadoop-271-cluster
+  links:
+    - "namenode:namenode"
+#  ports:
+#    - "50070:50070"
+  dns: "namenode"
+  command: "/etc/bootstrap.sh -d -datanode"
