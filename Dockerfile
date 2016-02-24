@@ -3,7 +3,7 @@
 # sudo docker build -t yarn_cluster .
 
 FROM sequenceiq/pam:centos-6.5
-MAINTAINER Stas Fedyakov Staislav.Fedyakov@gmail.com
+MAINTAINER Stas Fedyakov Stanislav.Fedyakov@gmail.com
 
 USER root
 
@@ -29,15 +29,12 @@ RUN rpm -i /tmp/jdk-8u73-linux-x64.rpm && \
     rm /tmp/jdk-8u73-linux-x64.rpm
 
 # hadoop
-ADD hadoop-2.7.1.tar.gz /tmp/
-RUN mv /tmp/hadoop-2.7.1 /usr/local/ && \
-    cd /usr/local && ln -s ./hadoop-2.7.1 hadoop
+ADD hadoop-2.7.1.tar.gz /usr/local/
+RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop && \
+    rm  /usr/local/hadoop/lib/native/*
 
 # fixing the libhadoop.so like a boss
-ADD hadoop-native-64-2.7.0.tar /tmp/
-RUN rm  /usr/local/hadoop/lib/native/* && \
-    mv /tmp/libh* /usr/local/hadoop/lib/native/
-
+ADD hadoop-native-64-2.7.0.tar /usr/local/hadoop/lib/native/
 
 ENV HADOOP_PREFIX=/usr/local/hadoop \
     HADOOP_COMMON_HOME=/usr/local/hadoop \
