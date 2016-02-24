@@ -158,4 +158,4 @@ docker exec namenode hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-
 # Limitations
 Please be aware of the following
 - Exactly one Namenode is allowed
-- /etc/hosts are synchronized only during startup, but not continuously. So if you add more nodes during cluster run, new nodes may not be visible to existing ones. Hope, Docker will fix their Compose DNS issues!
+- /etc/hosts are synchronized continuously every 60 seconds. So if you add more nodes during cluster run, new nodes may not be visible to existing ones for about a minute. Hope, Docker will fix their Compose DNS issues!
