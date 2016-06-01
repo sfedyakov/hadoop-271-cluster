@@ -27,12 +27,10 @@ if [[ $1 = "-datanode" || $2 = "-datanode" ]]; then
 
   $HADOOP_PREFIX/sbin/start-dfs.sh
   $HADOOP_PREFIX/sbin/yarn-daemons.sh start nodemanager
-
-  sleep 20 && ssh namenode cat /etc/hosts | grep -v localhost | grep -v :: | grep -v namenode | grep -v `hostname` >> /etc/hosts
 fi
 
 if [[ $1 = "-d" || $2 = "-d" ]]; then
-  while true; do sleep 1000; done
+  while true; do ssh namenode cat /etc/hosts | grep -v localhost | grep -v :: | grep -v namenode | grep -v `hostname` | while read line ; do grep "$line" /etc/hosts > /dev/null 2>&1 || (echo "$line" >> /etc/hosts); done ; sleep 60 ; done
 fi
 
 if [[ $1 = "-bash" || $2 = "-bash" ]]; then
