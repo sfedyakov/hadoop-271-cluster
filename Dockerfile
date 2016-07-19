@@ -10,7 +10,8 @@ USER root
 # install dev tools
 RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync | true && \
     yum update -y libselinux | true && \
-    yum install dnsmasq -y && \
+    yum install dnsmasq snappy openssl -y && \
+    ln -s /usr/lib64/libcrypto.so.1.0.1e /usr/lib64/libcrypto.so && \ 
     echo source /etc/bashrc > /root/.bash_profile && \
     echo user=root >> /etc/dnsmasq.conf && \
     echo bogus-priv >> /etc/dnsmasq.conf && \
@@ -34,7 +35,7 @@ RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop && \
     rm  /usr/local/hadoop/lib/native/*
 
 # fixing the libhadoop.so like a boss
-ADD hadoop-native-64-2.7.0.tar /usr/local/hadoop/lib/native/
+ADD hadoop-native-64-2.7.1.tar /usr/local/hadoop/lib/native/
 
 ENV HADOOP_PREFIX=/usr/local/hadoop \
     HADOOP_COMMON_HOME=/usr/local/hadoop \
